@@ -1,0 +1,15 @@
+services:
+  db:
+    build: .
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: mypassword
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./1_task.sql:/docker-entrypoint-initdb.d/1_task.sql
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
